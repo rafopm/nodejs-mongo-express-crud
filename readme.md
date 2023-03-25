@@ -10,5 +10,4 @@ npm i mongoose
 
 npm i dotenv
 
-Necesario para deploy en Netlify
-npm install express netlify-lambda serverless-http
+

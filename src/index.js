@@ -9,7 +9,7 @@ const app = express();
 
 // middlewares
 app.use(express.json());
-app.use("/", userRoute);
+app.use("/api", userRoute);
 
 // routes
 app.get("/", (req, res) => {
