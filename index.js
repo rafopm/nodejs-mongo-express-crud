@@ -1,27 +1,28 @@
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 require("dotenv").config();
-const userRoute = require("./src/routes/user");
-// settings
-const app = express();
-//const port = process.env.PORT || 3000;
+const usersRouter = require('./src/routes/user');
+//const postsRouter = require('./routes/posts');
 
-// middlewares
-app.use(express.json());
-app.use("/api", userRoute);
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-// mongodb connection
+
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => console.log("Connected to MongoDB Atlas"))
-  .catch((error) => console.error(error));
+  .then(() => console.log("Conexión exitosa a la base de datos"))
+  .catch((error) => console.log(error));
 
-// server listening
-app.listen(process.env.PORT || 3000, function() {
-  console.log('Server listening on port 3000!');
-});
+app.use('/users', usersRouter);
+//app.use('/posts', postsRouter);
+
+app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));
