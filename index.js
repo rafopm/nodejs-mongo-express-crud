@@ -24,7 +24,7 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
-app.use('/products', productsRouter);
+app.use("/products", productsRouter);
 app.use("/users", usersRouter);
 
 
