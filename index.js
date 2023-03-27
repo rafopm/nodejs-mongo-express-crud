@@ -20,11 +20,13 @@ mongoose
   .catch((error) => console.log(error));
 
 // routes
+
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
-app.use("/users", usersRouter);
 app.use('/products', productsRouter);
+app.use("/users", usersRouter);
+
 
 // server listening
 app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));
